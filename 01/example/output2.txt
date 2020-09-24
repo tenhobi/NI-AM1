@@ -1,0 +1,8 @@
+{
+  "id": "42",
+  "location": "Czech republic",
+  "person": {
+    "name": "Obiwan",
+    "surname": "Kenobi"
+  }
+}

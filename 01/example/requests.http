@@ -1,0 +1,15 @@
+###
+
+POST http://127.0.0.1:8080/transformation
+Content-Type: text/plain
+
+< input1.txt
+
+###
+
+POST http://127.0.0.1:8080/transformation
+Content-Type: text/plain
+
+< input2.txt
+
+###
