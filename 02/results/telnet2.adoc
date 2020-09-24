@@ -1,0 +1,21 @@
+[source, http request]
+----
+tenhobi@alderaan:/mnt/d/git/NI-AM1/02$ telnet 147.32.233.18 8888
+POST /NI-AM1-ApplicatTrying 147.32.233.18...
+ionProtocols/httpTelnet2 HTTP/1.1
+Host: 147.32.233.18
+Referer: mi-mdw
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 8
+
+data=fitConnected to 147.32.233.18.
+Escape character is '^]'.
+
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Type: text/html;charset=UTF-8
+Content-Length: 3
+Date: Thu, 24 Sep 2020 11:25:18 GMT
+
+OK
+----

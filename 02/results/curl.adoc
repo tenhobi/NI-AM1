@@ -1,0 +1,22 @@
+[source, http request]
+----
+tenhobi@alderaan:/mnt/d/git/NI-AM1/02$ telnet 147.32.233.18 8888
+GET /NI-AM1-ApplicatioTrying 147.32.233.18...
+nProtocols/httpTelnet1 HTTP/1.1
+Host: 147.32.233.1Connected to 147.32.233.18.
+Escape character is '^]'.
+8
+User-Agent: fit-telnet
+Accept-Charset: UTF-8
+Accept-Language: en-US
+Accept: text/html
+
+
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Content-Type: text/html;charset=UTF-8
+Content-Length: 3
+Date: Thu, 24 Sep 2020 11:14:25 GMT
+
+OK
+----

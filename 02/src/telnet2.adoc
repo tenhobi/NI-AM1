@@ -1,0 +1,11 @@
+[source, http request]
+----
+telnet 147.32.233.18 8888
+POST /NI-AM1-ApplicationProtocols/httpTelnet2 HTTP/1.1
+Host: 147.32.233.18
+Referer: mi-mdw
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 8
+
+data=fit
+----
