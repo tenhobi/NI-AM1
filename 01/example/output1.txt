@@ -1,0 +1,8 @@
+{
+  "id": "1",
+  "location": "Bohemian Switzerland",
+  "person": {
+    "name": "Jan",
+    "surname": "Novak"
+  }
+}
