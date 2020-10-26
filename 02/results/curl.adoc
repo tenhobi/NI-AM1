@@ -1,0 +1,56 @@
+[source]
+----
+tenhobi@alderaan:/mnt/d/git/NI-AM1/02$ curl \
+http:/> http://147.32.233.18:8888/NI-AM1-ApplicationProtocols/protocol/welcome
+OK
+Your next page is /protocol/get
+send GET parameter "name" with value "wi"
+set Header "Accept" to "text/plain"
+tenhobi@alderaan:/mnt/d/git/NI-AM1/02$ curl \
+> http://147.32.233.18:8888/NI-AM1-ApplicationProtocols/protocol/get?name=wi \
+> -X GET \
+> -H "Accept: text/plain"
+OK
+Your next page is /protocol/post
+send POST parameter "name" with value "voter"
+and set Header "Accept" is "text/plain"
+and set Header "Accept-Language" is "en-US"
+tenhobi@alderaan:/mnt/d/git/NI-AM1/02$ curl \
+> http://147.32.233.18:8888/NI-AM1-ApplicationProtocols/protocol/post \
+> -X POST \
+> -H "Accept: text/plain" \
+> -H "Accept-Language: en-US" \
+> -d "name=voter"
+OK
+Your next page is /protocol/referer
+change referer to value "screen"
+set Header "Accept" is "text/html"
+tenhobi@alderaan:/mnt/d/git/NI-AM1/02$ curl \
+> http://147.32.233.18:8888/NI-AM1-ApplicationProtocols/protocol/referer \
+> -H "Referer: screen" \
+> -H "Accept: text/html"
+OK
+Your next page is /protocol/useragent
+and change User-Agent to value "prior"
+and set Header "Accept-Language" is "en-US"
+tenhobi@alderaan:/mnt/d/git/NI-AM1/02$ curl \
+> http://147.32.233.18:8888/NI-AM1-ApplicationProtocols/protocol/useragent \
+> -H "User-Agent: prior" \
+> -H "Accept-Language: en-US"
+OK
+Your next page is /protocol/cookie
+send cookie called "name" with value "has"
+tenhobi@alderaan:/mnt/d/git/NI-AM1/02$ curl \
+> http://147.32.233.18:8888/NI-AM1-ApplicationProtocols/protocol/cookie \
+> -b name=has
+OK
+Your next page is /protocol/auth
+authenticate by "latter:tolerated"
+set Header "Accept" is "text/html"
+tenhobi@alderaan:/mnt/d/git/NI-AM1/02$ curl \
+> http://147.32.233.18:8888/NI-AM1-ApplicationProtocols/protocol/auth \
+> -u latter:tolerated \
+> -H "Accept: text/html"
+OK
+Your final result is: invalidates
+----

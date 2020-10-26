@@ -1,0 +1,10 @@
+[source, http request]
+----
+telnet 147.32.233.18 8888
+GET /NI-AM1-ApplicationProtocols/httpTelnet1 HTTP/1.1
+Host: 147.32.233.18
+User-Agent: fit-telnet
+Accept-Charset: UTF-8
+Accept-Language: en-US
+Accept: text/html
+----

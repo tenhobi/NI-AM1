@@ -1,0 +1,54 @@
+[source, http request]
+----
+curl \
+http://147.32.233.18:8888/NI-AM1-ApplicationProtocols/protocol/welcome
+----
+
+[source, http request]
+----
+curl \
+http://147.32.233.18:8888/NI-AM1-ApplicationProtocols/protocol/get?name=wi \
+-X GET \
+-H "Accept: text/plain"
+----
+
+[source, http request]
+----
+curl \
+http://147.32.233.18:8888/NI-AM1-ApplicationProtocols/protocol/post \
+-X POST \
+-H "Accept: text/plain" \
+-H "Accept-Language: en-US" \
+-d "name=voter"
+----
+
+[source, http request]
+----
+curl \
+http://147.32.233.18:8888/NI-AM1-ApplicationProtocols/protocol/referer \
+-H "Referer: screen" \
+-H "Accept: text/html"
+----
+
+[source, http request]
+----
+curl \
+http://147.32.233.18:8888/NI-AM1-ApplicationProtocols/protocol/useragent \
+-H "User-Agent: prior" \
+-H "Accept-Language: en-US"
+----
+
+[source, http request]
+----
+curl \
+http://147.32.233.18:8888/NI-AM1-ApplicationProtocols/protocol/cookie \
+-b name=has
+----
+
+[source, http request]
+----
+curl \
+http://147.32.233.18:8888/NI-AM1-ApplicationProtocols/protocol/auth \
+-u latter:tolerated \
+-H "Accept: text/html"
+----
