@@ -1,0 +1,43 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:yyy="https://courses.fit.cvut.cz/NI-AM1/hw/04/"
+           targetNamespace="https://courses.fit.cvut.cz/NI-AM1/hw/04/"
+           elementFormDefault="qualified">
+
+    <xs:element name="getPaymentsRequest">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getPaymentsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="payment" type="yyy:payment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addPaymentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="payment" type="yyy:payment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="addPaymentResponse">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+
+
+
+    <xs:complexType name="payment">
+        <xs:sequence>
+            <xs:element name="id" type="xs:string"/>
+            <xs:element name="creditCardNumber" type="xs:string"/>
+            <xs:element name="creditCardOwner" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

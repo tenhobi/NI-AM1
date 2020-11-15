@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="90b21863-dfda-4dda-aa47-807d91ce19ff" activeEnvironment="Default" name="payments" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="f7dacfdf-7092-4ec2-ba2a-d4691e266f9b" wsaVersion="NONE" name="PaymentsPortSoap11" type="wsdl" bindingName="{https://courses.fit.cvut.cz/NI-AM1/hw/04/}PaymentsPortSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/ws/payments.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/ws/payments.wsdl"><con:part><con:url>http://localhost:8080/ws/payments.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="https://courses.fit.cvut.cz/NI-AM1/hw/04/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="https://courses.fit.cvut.cz/NI-AM1/hw/04/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="https://courses.fit.cvut.cz/NI-AM1/hw/04/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="https://courses.fit.cvut.cz/NI-AM1/hw/04/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:yyy="https://courses.fit.cvut.cz/NI-AM1/hw/04/">
+      <xs:element name="getPaymentsRequest">
+        <xs:complexType>
+          <xs:sequence/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getPaymentsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="payment" type="yyy:payment"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addPaymentRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="payment" type="yyy:payment"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="addPaymentResponse">
+        <xs:complexType>
+          <xs:sequence/>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="payment">
+        <xs:sequence>
+          <xs:element name="id" type="xs:string"/>
+          <xs:element name="creditCardNumber" type="xs:string"/>
+          <xs:element name="creditCardOwner" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getPaymentsRequest">
+    <wsdl:part element="tns:getPaymentsRequest" name="getPaymentsRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPaymentsResponse">
+    <wsdl:part element="tns:getPaymentsResponse" name="getPaymentsResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addPaymentResponse">
+    <wsdl:part element="tns:addPaymentResponse" name="addPaymentResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addPaymentRequest">
+    <wsdl:part element="tns:addPaymentRequest" name="addPaymentRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PaymentsPort">
+    <wsdl:operation name="getPayments">
+      <wsdl:input message="tns:getPaymentsRequest" name="getPaymentsRequest"></wsdl:input>
+      <wsdl:output message="tns:getPaymentsResponse" name="getPaymentsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addPayment">
+      <wsdl:input message="tns:addPaymentRequest" name="addPaymentRequest"></wsdl:input>
+      <wsdl:output message="tns:addPaymentResponse" name="addPaymentResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PaymentsPortSoap11" type="tns:PaymentsPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getPayments">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getPaymentsRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getPaymentsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addPayment">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="addPaymentRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addPaymentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PaymentsPortService">
+    <wsdl:port binding="tns:PaymentsPortSoap11" name="PaymentsPortSoap11">
+      <soap:address location="http://localhost:8080/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/ws</con:endpoint></con:endpoints><con:operation id="f8951220-2dbf-4b55-b878-0634486563fa" isOneWay="false" action="" name="addPayment" bindingOperationName="addPayment" type="Request-Response" outputName="addPaymentResponse" inputName="addPaymentRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0d42904c-e5d3-4df4-8dca-a3023f7797af" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="https://courses.fit.cvut.cz/NI-AM1/hw/04/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:addPaymentRequest>\r
+         <ns:payment>\r
+            <ns:id>yoaalo</ns:id>\r
+            <ns:creditCardNumber>1234-1234-1234-1234</ns:creditCardNumber>\r
+            <ns:creditCardOwner>CardOwner</ns:creditCardOwner>\r
+         </ns:payment>\r
+      </ns:addPaymentRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://courses.fit.cvut.cz/NI-AM1/hw/04/PaymentsPort/addPaymentRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="2dc63ec3-8478-4a79-ba5a-a6fe02e60f16" isOneWay="false" action="" name="getPayments" bindingOperationName="getPayments" type="Request-Response" outputName="getPaymentsResponse" inputName="getPaymentsRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f3b10185-e546-4fcb-82b3-9259a1c9dcd3" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="https://courses.fit.cvut.cz/NI-AM1/hw/04/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:getPaymentsRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://courses.fit.cvut.cz/NI-AM1/hw/04/PaymentsPort/getPaymentsRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="6faf31a7-64af-47e8-8bf2-7122a3678c24" name="TestSuite 1"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="2f339184-21e2-41f2-9132-73b06f9784b8" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="init data" searchProperties="true"><con:settings/><con:testStep type="request" name="get" id="83583e9d-aaf3-4ae6-bbe8-85a64b629be4"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PaymentsPortSoap11</con:interface><con:operation>getPayments</con:operation><con:request name="get" id="bd883b77-ad23-47c5-be76-659f1ecf8261"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="https://courses.fit.cvut.cz/NI-AM1/hw/04/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:getPaymentsRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6f96e4f5-c7c8-4d99-b598-9ab4a7f86cde"/><con:assertion type="XPath Match" id="3ffa292e-e573-489d-9080-805af82af5b9" name="XPath Match"><con:configuration><path>declare namespace SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='https://courses.fit.cvut.cz/NI-AM1/hw/04/';
+count(//ns2:payment)</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase id="350522aa-6688-495e-a111-1cd36c4e9b38" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="add payment" searchProperties="true"><con:settings/><con:testStep type="request" name="get init" id="cd20efdf-1274-4c9c-ad93-e70c1a30c872"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PaymentsPortSoap11</con:interface><con:operation>getPayments</con:operation><con:request name="get init" id="14c3b8bc-1c06-4066-aaa8-847bf87529f3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="https://courses.fit.cvut.cz/NI-AM1/hw/04/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:getPaymentsRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="ff53814d-834a-4e52-8faa-11af8be97668"/><con:assertion type="XPath Match" id="e84915ff-a8cf-4240-a617-229416dc15b5" name="XPath Match"><con:configuration><path>declare namespace SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='https://courses.fit.cvut.cz/NI-AM1/hw/04/';
+count(//ns2:payment)</path><content>1</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="add valid" id="7c97894e-79b0-4469-bbc8-3b8602a9bf29"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PaymentsPortSoap11</con:interface><con:operation>addPayment</con:operation><con:request name="add valid" id="198693ec-f99c-4063-9631-955da9fc61a5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="https://courses.fit.cvut.cz/NI-AM1/hw/04/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:addPaymentRequest>\r
+         <ns:payment>\r
+            <ns:id>test1</ns:id>\r
+            <ns:creditCardNumber>1234-1234-1234-1234</ns:creditCardNumber>\r
+            <ns:creditCardOwner>CardOwner</ns:creditCardOwner>\r
+         </ns:payment>\r
+      </ns:addPaymentRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6e960f8a-a7b3-4a71-85b1-8285b1cc3835"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="get" id="9af06790-b49e-4b58-817a-eca76c9c7e83"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PaymentsPortSoap11</con:interface><con:operation>getPayments</con:operation><con:request name="get" id="14c3b8bc-1c06-4066-aaa8-847bf87529f3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="https://courses.fit.cvut.cz/NI-AM1/hw/04/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:getPaymentsRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="ff53814d-834a-4e52-8faa-11af8be97668"/><con:assertion type="XPath Match" id="e84915ff-a8cf-4240-a617-229416dc15b5" name="XPath Match"><con:configuration><path>declare namespace SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='https://courses.fit.cvut.cz/NI-AM1/hw/04/';
+count(//ns2:payment)</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="add invalid owner" id="02fbce84-5c22-4325-b0c6-578f7b99823e"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PaymentsPortSoap11</con:interface><con:operation>addPayment</con:operation><con:request name="add invalid owner" id="198693ec-f99c-4063-9631-955da9fc61a5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="https://courses.fit.cvut.cz/NI-AM1/hw/04/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:addPaymentRequest>\r
+         <ns:payment>\r
+            <ns:id>test2</ns:id>\r
+            <ns:creditCardNumber>1234-1234-1234-1234</ns:creditCardNumber>\r
+            <ns:creditCardOwner>nope</ns:creditCardOwner>\r
+         </ns:payment>\r
+      </ns:addPaymentRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6e960f8a-a7b3-4a71-85b1-8285b1cc3835"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="add invalid number" id="c71815ee-990f-4955-855d-a873da9a3bc6"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PaymentsPortSoap11</con:interface><con:operation>addPayment</con:operation><con:request name="add invalid number" id="198693ec-f99c-4063-9631-955da9fc61a5"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="https://courses.fit.cvut.cz/NI-AM1/hw/04/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:addPaymentRequest>\r
+         <ns:payment>\r
+            <ns:id>test3</ns:id>\r
+            <ns:creditCardNumber>1111-1111-1111-1111</ns:creditCardNumber>\r
+            <ns:creditCardOwner>CardOwner</ns:creditCardOwner>\r
+         </ns:payment>\r
+      </ns:addPaymentRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="6e960f8a-a7b3-4a71-85b1-8285b1cc3835"/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="get final" id="79fdf2cb-2328-4806-8908-e226b59ee234"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>PaymentsPortSoap11</con:interface><con:operation>getPayments</con:operation><con:request name="get final" id="14c3b8bc-1c06-4066-aaa8-847bf87529f3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="https://courses.fit.cvut.cz/NI-AM1/hw/04/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:getPaymentsRequest/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" id="ff53814d-834a-4e52-8faa-11af8be97668"/><con:assertion type="XPath Match" id="e84915ff-a8cf-4240-a617-229416dc15b5" name="XPath Match"><con:configuration><path>declare namespace SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace ns2='https://courses.fit.cvut.cz/NI-AM1/hw/04/';
+count(//ns2:payment)</path><content>2</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
