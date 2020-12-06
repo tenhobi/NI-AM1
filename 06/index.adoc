@@ -1,1 +1,24 @@
-= HW6 - TBD!
+= HW6
+
+V tomto úkolu je implementována služba,
+která po zavolání delete tour (`cz/cvut/fit/niam1/rest/RestApplicationRepository.java:39`) simuluje provádění uživatelského potvrzení.
+Služba přiřadí Tour do speciálního seznamu (dostupný v `GET /tour/awaiting-delete`), ve kterém je Tour k náhledu do té doby, než je finálně po po 10 sekundách smazána.
+
+
+Služba poskytuje tyto zdroje:
+
+- GET /tour
+  * -> List<Tour>, 200 OK
+
+- GET /tour/awaiting-delete
+  * -> List<Tour>, 200 OK
+
+- POST /tour
+  * -> -, 201
+
+- GET /tour/{id}
+  * -> Tour, 200 OK
+  * -> -, 404 Not found
+
+- DELETE /tour/{id}
+  * -> -, 200 OK

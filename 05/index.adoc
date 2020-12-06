@@ -1,1 +1,5 @@
-= HW5 - TBD!
+= HW5
+
+Cílem úkolu je vytvořit návrh REST,
+to je řešeno pomocí OPEN API v Swagger Editor,
+export řešení se nachází v souboru `results/openapi.yaml`.

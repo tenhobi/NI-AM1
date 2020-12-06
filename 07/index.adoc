@@ -1,1 +1,17 @@
-= HW7 - TBD!
+= HW7
+
+V tomto úkolu je implementována služba,
+která po zavolání GET /tour, /tour/weak či /tour/strong přidává last modified, weak etagu a strong etagu.
+Zkouška dotazů je zaznamenána v složce `results/`.
+
+Služba poskytuje tyto zdroje:
+
+- GET /tour, /tour/weak, /tour/strong
+  * -> List<Tour>, 200 OK
+
+- POST /tour
+  * -> -, 201
+
+- GET /tour/{id}
+  * -> Tour, 200 OK
+  * -> -, 404 Not found

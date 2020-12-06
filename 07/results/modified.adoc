@@ -1,0 +1,124 @@
+# Testování last modified
+
+Zavolání `/tour` poprvé.
+
+[source,http]
+----
+GET http://localhost:8080/tour
+....
+
+HTTP/1.1 200
+Last-Modified: Sun, 06 Dec 2020 22:44:43 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sun, 06 Dec 2020 22:44:55 GMT
+Keep-Alive: timeout=60
+Connection: keep-alive
+
+[
+  {
+    "id": "1",
+    "name": "Beach tour",
+    "customers": [],
+    "weakHash": -21281595
+  },
+  {
+    "id": "2",
+    "name": "Ski tour",
+    "customers": [],
+    "weakHash": 2137165302
+  },
+  {
+    "id": "3",
+    "name": "FIT CTU",
+    "customers": [
+      "Honza"
+    ],
+    "weakHash": -130725053
+  }
+]
+
+Response code: 200; Time: 36ms; Content length: 206 bytes
+----
+
+Zavolání zdroje podruhé s `If-Modified-Since`.
+
+[source,http]
+----
+GET http://localhost:8080/tour
+If-Modified-Since: Sun, 06 Dec 2020 22:44:43 GMT
+....
+
+HTTP/1.1 304
+Last-Modified: Sun, 06 Dec 2020 22:44:43 GMT
+Date: Sun, 06 Dec 2020 22:45:52 GMT
+Keep-Alive: timeout=60
+Connection: keep-alive
+
+<Response body is empty>
+
+Response code: 304; Time: 28ms; Content length: 0 bytes
+----
+
+Přidání customera.
+
+[source,http]
+----
+POST http://localhost:8080/tour/3/customer
+
+Lojza
+....
+
+HTTP/1.1 200
+Content-Length: 0
+Date: Sun, 06 Dec 2020 22:40:38 GMT
+Keep-Alive: timeout=60
+Connection: keep-alive
+
+<Response body is empty>
+
+Response code: 200; Time: 42ms; Content length: 0 bytes
+----
+
+Zavolání zdroje s původním `If-Modified-Since`.
+
+[source,http]
+----
+GET http://localhost:8080/tour
+If-Modified-Since: Sun, 06 Dec 2020 22:44:43 GMT
+....
+
+HTTP/1.1 200
+Last-Modified: Sun, 06 Dec 2020 22:46:27 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sun, 06 Dec 2020 22:47:06 GMT
+Keep-Alive: timeout=60
+Connection: keep-alive
+
+[
+  {
+    "id": "1",
+    "name": "Beach tour",
+    "customers": [],
+    "weakHash": -21281595
+  },
+  {
+    "id": "2",
+    "name": "Ski tour",
+    "customers": [],
+    "weakHash": 2137165302
+  },
+  {
+    "id": "3",
+    "name": "FIT CTU",
+    "customers": [
+      "Honza",
+      "Lojza"
+    ],
+    "weakHash": -130725053
+  }
+]
+
+Response code: 200; Time: 28ms; Content length: 214 bytes
+----

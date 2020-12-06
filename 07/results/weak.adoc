@@ -1,0 +1,100 @@
+# Testování weak etag
+
+Zavolání `/tour/weak` poprvé.
+
+[source,http]
+----
+GET http://localhost:8080/tour/strong
+....
+
+HTTP/1.1 200
+ETag: W/"-1574823951"
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sun, 06 Dec 2020 22:42:13 GMT
+Keep-Alive: timeout=60
+Connection: keep-alive
+
+[
+  {
+    "id": "1",
+    "name": "Beach tour",
+    "customers": [],
+    "weakHash": -21281595
+  },
+  {
+    "id": "2",
+    "name": "Ski tour",
+    "customers": [],
+    "weakHash": 2137165302
+  },
+  {
+    "id": "3",
+    "name": "FIT CTU",
+    "customers": [
+      "Honza"
+    ],
+    "weakHash": -130725053
+  }
+]
+
+Response code: 200; Time: 106ms; Content length: 206 bytes
+----
+
+Zavolání zdroje podruhé s etagem.
+
+[source,http]
+----
+GET http://localhost:8080/tour/weak
+If-None-Match: W/"-1574823951"
+....
+
+HTTP/1.1 304
+ETag: W/"-1574823951"
+Date: Sun, 06 Dec 2020 22:43:18 GMT
+Keep-Alive: timeout=60
+Connection: keep-alive
+
+<Response body is empty>
+
+Response code: 304; Time: 27ms; Content length: 0 bytes
+----
+
+Přidání customera.
+
+[source,http]
+----
+POST http://localhost:8080/tour/3/customer
+
+Lojza
+....
+
+HTTP/1.1 200
+Content-Length: 0
+Date: Sun, 06 Dec 2020 22:40:38 GMT
+Keep-Alive: timeout=60
+Connection: keep-alive
+
+<Response body is empty>
+
+Response code: 200; Time: 34ms; Content length: 0 bytes
+----
+
+Zavolání zdroje s původním etagem (etag se nemění).
+
+[source,http]
+----
+GET http://localhost:8080/tour/strong
+If-None-Match: "0f15608ab58348b4195b04d5ca19ab0b7"
+....
+
+HTTP/1.1 304
+ETag: W/"-1574823951"
+Date: Sun, 06 Dec 2020 22:44:06 GMT
+Keep-Alive: timeout=60
+Connection: keep-alive
+
+<Response body is empty>
+
+Response code: 304; Time: 33ms; Content length: 0 bytes
+----

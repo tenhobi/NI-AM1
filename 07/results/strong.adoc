@@ -1,0 +1,124 @@
+# Testování strong etag
+
+Zavolání `/tour/strong` poprvé.
+
+[source,http]
+----
+GET http://localhost:8080/tour/strong
+....
+
+HTTP/1.1 200
+ETag: "0f15608ab58348b4195b04d5ca19ab0b7"
+Content-Type: application/json
+Content-Length: 214
+Date: Sun, 06 Dec 2020 22:34:07 GMT
+Keep-Alive: timeout=60
+Connection: keep-alive
+
+[
+{
+"id": "1",
+"name": "Beach tour",
+"customers": [],
+"weakHash": -21281595
+},
+{
+"id": "2",
+"name": "Ski tour",
+"customers": [],
+"weakHash": 2137165302
+},
+{
+"id": "3",
+"name": "FIT CTU",
+"customers": [
+"Honza",
+"Lojza"
+],
+"weakHash": -130725053
+}
+]
+
+Response code: 200; Time: 29ms; Content length: 206 bytes
+----
+
+Zavolání zdroje podruhé s etagem.
+
+[source,http]
+----
+GET http://localhost:8080/tour/strong
+If-None-Match: "0f15608ab58348b4195b04d5ca19ab0b7"
+....
+
+HTTP/1.1 304
+ETag: "0f15608ab58348b4195b04d5ca19ab0b7"
+Date: Sun, 06 Dec 2020 22:38:19 GMT
+Keep-Alive: timeout=60
+Connection: keep-alive
+
+<Response body is empty>
+
+Response code: 304; Time: 30ms; Content length: 0 bytes
+----
+
+Přidání customera.
+
+[source,http]
+----
+POST http://localhost:8080/tour/3/customer
+
+Lojza
+....
+
+HTTP/1.1 200
+Content-Length: 0
+Date: Sun, 06 Dec 2020 22:40:38 GMT
+Keep-Alive: timeout=60
+Connection: keep-alive
+
+<Response body is empty>
+
+Response code: 200; Time: 30ms; Content length: 0 bytes
+----
+
+Zavolání zdroje s původním etagem (etag se mění).
+
+[source,http]
+----
+GET http://localhost:8080/tour/strong
+If-None-Match: "0f15608ab58348b4195b04d5ca19ab0b7"
+....
+
+HTTP/1.1 200
+ETag: "0e48ddeb654328144a685f6f3f0e16ddf"
+Content-Type: application/json
+Content-Length: 222
+Date: Sun, 06 Dec 2020 22:41:17 GMT
+Keep-Alive: timeout=60
+Connection: keep-alive
+
+[
+  {
+    "id": "1",
+    "name": "Beach tour",
+    "customers": [],
+    "weakHash": -21281595
+  },
+  {
+    "id": "2",
+    "name": "Ski tour",
+    "customers": [],
+    "weakHash": 2137165302
+  },
+  {
+    "id": "3",
+    "name": "FIT CTU",
+    "customers": [
+      "Honza",
+      "Lojza",
+      "Lojza"
+    ],
+    "weakHash": -130725053
+  }
+]
+----
