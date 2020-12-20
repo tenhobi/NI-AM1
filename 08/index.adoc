@@ -1,1 +1,3 @@
-= HW8 - TBD!
+= HW8
+
+Úloha řeší implementaci procesu pomocí front. Jednotliví agenti jsou implementování jako jednotlivé Java projekty. Výsledky úlohy jsou v link:results/result.adoc[].
