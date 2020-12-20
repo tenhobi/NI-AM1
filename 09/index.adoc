@@ -1,1 +1,46 @@
-= HW9 - TBD!
+= HW9
+
+Úloha implementuje jednoduchý load balancing. Aplikace uchovává seznam url, které postupně předává. Url, která je nedostupná, se přiřadí do unhealthy seznamu (resp. index) a není s ní dále počítáno. Do seznamu se kterým pracuje aplikace se dostane jakmile aplikace zjistí, že již funguje, což se děje kontrolou jednou za 1000 ms.
+
+Výpis logu:
+
+[code, bash]
+----
+2020-12-20 22:03:27.184  INFO 42516 --- [nio-8080-exec-1] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:27.213  INFO 42516 --- [nio-8080-exec-1] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute1/list
+2020-12-20 22:03:27.263  INFO 42516 --- [nio-8080-exec-5] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:27.275 ERROR 42516 --- [nio-8080-exec-5] cz.cvut.fit.niam1.Application            : Exception for url http://147.32.233.18:8888/MI-MDW-LastMinute2/list
+2020-12-20 22:03:27.292  INFO 42516 --- [nio-8080-exec-5] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute3/list
+2020-12-20 22:03:27.326  INFO 42516 --- [        Timer-0] cz.cvut.fit.niam1.Application            : Still not healthy: http://147.32.233.18:8888/MI-MDW-LastMinute2/list
+2020-12-20 22:03:27.357  INFO 42516 --- [nio-8080-exec-7] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:27.375  INFO 42516 --- [nio-8080-exec-7] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute1/list
+2020-12-20 22:03:27.420  INFO 42516 --- [nio-8080-exec-9] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:27.429  INFO 42516 --- [nio-8080-exec-9] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute3/list
+2020-12-20 22:03:27.472  INFO 42516 --- [nio-8080-exec-2] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:27.486  INFO 42516 --- [nio-8080-exec-2] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute1/list
+2020-12-20 22:03:27.543  INFO 42516 --- [nio-8080-exec-6] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:27.551  INFO 42516 --- [nio-8080-exec-6] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute3/list
+2020-12-20 22:03:27.602  INFO 42516 --- [nio-8080-exec-3] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:27.609  INFO 42516 --- [nio-8080-exec-3] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute1/list
+2020-12-20 22:03:27.658  INFO 42516 --- [nio-8080-exec-8] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:27.668  INFO 42516 --- [nio-8080-exec-8] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute3/list
+2020-12-20 22:03:27.719  INFO 42516 --- [nio-8080-exec-4] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:27.729  INFO 42516 --- [nio-8080-exec-4] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute1/list
+2020-12-20 22:03:27.778  INFO 42516 --- [io-8080-exec-10] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:27.786  INFO 42516 --- [io-8080-exec-10] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute3/list
+2020-12-20 22:03:27.852  INFO 42516 --- [io-8080-exec-10] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:27.865  INFO 42516 --- [io-8080-exec-10] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute1/list
+2020-12-20 22:03:27.930  INFO 42516 --- [nio-8080-exec-1] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:27.939  INFO 42516 --- [nio-8080-exec-1] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute3/list
+2020-12-20 22:03:27.995  INFO 42516 --- [nio-8080-exec-3] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:28.004  INFO 42516 --- [nio-8080-exec-3] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute1/list
+2020-12-20 22:03:28.073  INFO 42516 --- [nio-8080-exec-6] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:28.082  INFO 42516 --- [nio-8080-exec-6] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute3/list
+2020-12-20 22:03:28.149  INFO 42516 --- [nio-8080-exec-7] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:28.158  INFO 42516 --- [nio-8080-exec-7] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute1/list
+2020-12-20 22:03:28.210  INFO 42516 --- [nio-8080-exec-9] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:28.218  INFO 42516 --- [nio-8080-exec-9] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute3/list
+2020-12-20 22:03:28.282  INFO 42516 --- [nio-8080-exec-5] cz.cvut.fit.niam1.Application            : ----
+2020-12-20 22:03:28.290  INFO 42516 --- [nio-8080-exec-5] cz.cvut.fit.niam1.Application            : Using url http://147.32.233.18:8888/MI-MDW-LastMinute1/list
+2020-12-20 22:03:28.326  INFO 42516 --- [        Timer-0] cz.cvut.fit.niam1.Application            : Still not healthy: http://147.32.233.18:8888/MI-MDW-LastMinute2/list
+----
